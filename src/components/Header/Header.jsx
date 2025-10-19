@@ -11,7 +11,7 @@ function Header() {
             </div>
             <nav>
                 <ul className="flex space-x-6">
-                    <li><a href="#" className="">Home</a></li>
+                    <li><a href="/" className="">Home</a></li>
                     <li><a href="#brand-experience" className="">Brand Experience</a></li>
                     <li><a href="#users-manual" className="">Users Manual</a></li>
                     <li><a href="#guarantee" className="">Guarantee</a></li>
