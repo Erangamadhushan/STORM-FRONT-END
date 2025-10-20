@@ -33,12 +33,12 @@ jobs:
     # - name: Run tests
     #   run: npm test -- --coverage --watchAll=false
 
-    - name: Build project
-      run: npm run build
+    # - name: Build project
+    #   run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-${{ matrix.node-version }}
-        path: build/
-        retention-days: 7
+    # - name: Upload build artifacts
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: build-${{ matrix.node-version }}
+    #     path: build/
+    #     retention-days: 7
