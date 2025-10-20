@@ -4,6 +4,7 @@ import { HeroSection } from './components/HeroSection/HeroSection';
 import { Features } from './components/features/Features';
 import { Products } from './components/products/Products';
 import { PreOrder } from './components/Order/PreOrder';
+import { BuyItem } from './components/BuyItem/BuyItem';
 import { Footer } from './components/Footer/Footer';
 
 
@@ -17,6 +18,7 @@ function App() {
         <Features />
         <Products />
         <PreOrder />
+        <BuyItem />
       </main>
       <Footer />
     </>
