@@ -47,13 +47,13 @@ export const Footer = () => {
                     Find strength in numbers. Making progress as an athlete requires accurate data and insights.
                 </p>
             </div>
-            <div className="">
+            <div className="text-center md:text-justify">
                 <p>Documentation</p>
             </div>
-            <div className="">
+            <div className="text-center md:text-justify">
                 <p>Privacy Policy</p>
             </div>
-            <div className="">
+            <div className="text-center md:text-justify">
                 <p>Terms & Conditions</p>
             </div>
         </div>
