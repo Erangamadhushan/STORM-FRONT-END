@@ -3,7 +3,10 @@ import React from 'react'
 
 export const Features = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-20" id="users-manual">
+    <div className="max-w-7xl mx-auto px-4 pt-20" id="users-manual">
+      <div className='block md:hidden mb-10'>
+        <img src="digital-watch-main.png" alt="digital-watch-type-10" className="w-64 mx-auto"/>
+      </div>
       <div className="text-center">
         <h2 className="text-2xl font-bold md:text-4xl">Powerful <span className='text-lime-500'>health</span> features</h2>
       </div>
@@ -28,7 +31,7 @@ export const Features = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className='hidden md:block'>
           <img src="digital-watch-main.png" alt="digital-watch-type-10" className="w-64 mx-auto"/>
         </div>
         <div>

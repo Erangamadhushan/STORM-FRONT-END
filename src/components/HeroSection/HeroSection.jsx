@@ -13,8 +13,8 @@ export const HeroSection = () => {
             <div className="w-[95%] md:w-full h-auto max-w-5xl rounded-md mt-10 overflow-hidden" >
                 <img src='main-img5.png' alt='Digital Watch' className='w-[95%] mx-auto md:w-[60%] object-cover object-center'/>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-10" id="brand-experience">
-                <div className="w-1/2 mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full mt-10 " id="brand-experience">
+                <div className="w-1/2 mx-auto hidden md:block">
                     <img src='digital-watch4.jpg' alt='Digital Watch' className='w-full bg-gray-950 h-auto rounded-lg shadow-lg'/>
                 </div>
                 <div className="flex flex-col justify-center ">
