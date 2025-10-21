@@ -3,7 +3,7 @@ import { BookCheck } from 'lucide-react'
 
 export const PreOrder = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-8" id="pre-order">
+    <div className="max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-8" id="guarantee">
         <div>
             <h2 className="text-2xl font-semibold md:text-5xl mb-12">
                 The Last delivery you need to stay home for.

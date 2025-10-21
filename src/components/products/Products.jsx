@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Products = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-20">
+    <div className="max-w-7xl mx-auto px-4 py-20" id="">
         <div className="flex flex-col gap-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
                 <div>

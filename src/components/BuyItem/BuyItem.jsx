@@ -2,7 +2,7 @@ import React from 'react';
 
 export const BuyItem = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 min-h-[400px] py-20" style={{backgroundImage:`url(digital-watch11.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', }}>
+    <div className="max-w-7xl mx-auto px-4 min-h-[400px] py-20" style={{backgroundImage:`url(digital-watch11.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', }} id="contact-us">
         <div className="text-center">
             <h2 className="text-2xl font-bold md:text-4xl">Get your smart watch now</h2>
             <p className="mt-4">Get a 3% cashback, only for pre-order</p>

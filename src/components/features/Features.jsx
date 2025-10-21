@@ -3,7 +3,7 @@ import React from 'react'
 
 export const Features = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-20">
+    <div className="max-w-7xl mx-auto px-4 py-20" id="users-manual">
       <div className="text-center">
         <h2 className="text-2xl font-bold md:text-4xl">Powerful <span className='text-lime-500'>health</span> features</h2>
       </div>
