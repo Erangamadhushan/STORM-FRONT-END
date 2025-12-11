@@ -1,7 +1,7 @@
 import React from 'react'
 import { WatchIcon } from 'lucide-react';
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <div className="flex flex-col items-center min-h-[300px] bg-black text-white px-2 pt-10 pb-3">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full mb-6">
@@ -60,3 +60,5 @@ export const Footer = () => {
     </div>
   )
 }
+
+export default Footer;
