@@ -1,27 +1,20 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import { HeroSection } from './components/HeroSection/HeroSection';
-import { Features } from './components/features/Features';
-import { Products } from './components/products/Products';
-import { PreOrder } from './components/Order/PreOrder';
-import { BuyItem } from './components/BuyItem/BuyItem';
-import { Footer } from './components/Footer/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout } from './layout';
+import { Index } from './pages/Index';
+import { BuyWatches } from './pages/BuyWatches';
 
 
 function App() {
   return (
-    <>
-      <Header />
-      <main className="bg-black text-white">
-        {/* Main content goes here */}
-        <HeroSection />
-        <Features />
-        <Products />
-        <PreOrder />
-        <BuyItem />
-      </main>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Index />} />
+          <Route path="buy-watches" element={<BuyWatches />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

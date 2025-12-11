@@ -21,12 +21,12 @@ function Header() {
                 <nav className="hidden lg:block">
                     <ul className="flex space-x-6">
                         <li><a href="/" className="">Home</a></li>
-                        <li><a href="#brand-experience" className="">Brand Experience</a></li>
-                        <li><a href="#users-manual" className="">Users Manual</a></li>
-                        <li><a href="#guarantee" className="">Guarantee</a></li>
-                        <li><a href="#contact-us" className="">Contact Us</a></li>
+                        <li><a href="/#brand-experience" className="">Brand Experience</a></li>
+                        <li><a href="/#users-manual" className="">Users Manual</a></li>
+                        <li><a href="/#guarantee" className="">Guarantee</a></li>
+                        <li><a href="/#contact-us" className="">Contact Us</a></li>
                         <li>
-                            <a href="#pre-order" 
+                            <a href="/buy-watches" 
                             className=" bg-lime-500 p-2 rounded-md text-black font-semibold"
                             >Pre-order - $1000</a>
                         </li>
@@ -38,12 +38,12 @@ function Header() {
                     <div className="lg:hidden fixed top-20 w-full z-50 bg-black text-white px-4 pt-5 pb-10">
                         <ul className="space-y-4">
                             <li><a href="/" className="">Home</a></li>
-                            <li><a href="#brand-experience" className="">Brand Experience</a></li>
-                            <li><a href="#users-manual" className="">Users Manual</a></li>
-                            <li><a href="#guarantee" className="">Guarantee</a></li>
-                            <li><a href="#contact-us" className="">Contact Us</a></li>
+                            <li><a href="/#brand-experience" className="">Brand Experience</a></li>
+                            <li><a href="/#users-manual" className="">Users Manual</a></li>
+                            <li><a href="/#guarantee" className="">Guarantee</a></li>
+                            <li><a href="/#contact-us" className="">Contact Us</a></li>
                             <li>
-                                <a href="#pre-order" 
+                                <a href="/buy-watches" 
                                 className=" bg-lime-500 p-2 rounded-md text-black font-semibold"
                                 >Pre-order - $1000</a>
                             </li>
