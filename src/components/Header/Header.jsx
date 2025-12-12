@@ -8,7 +8,7 @@ function Header() {
     };
     return (
         <>
-            <div className="flex justify-between sticky top-0 left-0 z-50 lg:justify-around items-center h-20 bg-black text-white px-4">
+            <div className="flex justify-between sticky top-0 left-0 z-50 lg:justify-around items-center h-20 bg-transparent backdrop-blur-md text-white px-4">
                 <div className="flex justify-end">
                     <h1 className="text-xl font-bold text-end">
                         <WatchIcon className="inline-block mr-2" size={20} />
