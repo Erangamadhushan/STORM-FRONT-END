@@ -41,7 +41,7 @@ export const PurchaseWatch = () => {
   }, [modelNumber]);
   return (
     <div>
-      <main className="bg-black text-white min-h-screen p-8">
+      <main className="bg-black text-white min-h-screen p-2">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
           Purchase Watch
         </h1>
@@ -51,7 +51,7 @@ export const PurchaseWatch = () => {
               {/* Left: Image Gallery */}
               <div className="space-y-4">
                 {/* Main Image */}
-                <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 overflow-hidden">
+                <div className="bg-gray-900 rounded-2xl p-3 border border-gray-800 overflow-hidden">
                   <img
                     src={watch.imageURL}
                     alt={watch.modelNumber}
