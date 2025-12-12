@@ -51,7 +51,7 @@ export const PurchaseWatch = () => {
               {/* Left: Image Gallery */}
               <div className="space-y-4">
                 {/* Main Image */}
-                <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800 overflow-hidden">
+                <div className="bg-gray-900 rounded-2xl p-3 border border-gray-800 overflow-hidden">
                   <img
                     src={watch.imageURL}
                     alt={watch.modelNumber}
