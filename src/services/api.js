@@ -23,6 +23,17 @@ export const fetchWatches = async () => {
   }
 };
 
+export const fetchWatchByModelNumber = async (modelNumber) => {
+  try {
+    console.log('Fetching watch with model number:', modelNumber);
+    const response = await api.get(`/watches/model/${modelNumber}`);
+    return response.data.data[0];
+  } catch (error) {
+    console.error(`Error fetching watch with model number ${modelNumber}:`, error);
+    throw error;
+  }
+};
+
 // function for placing an order
 // export const placeOrder = async (orderData) => {
 //   try {
