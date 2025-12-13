@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
-import { WatchIcon, TextAlignEnd } from 'lucide-react';
+import React, { use, useState, useEffect } from 'react'; // Import React and useState hook
+import { WatchIcon, TextAlignEnd } from 'lucide-react'; // Import icons from lucide-react
+import { useAuth } from '../../context/AuthContext'; // Import the useAuth hook
+import { getCountryCode } from "../../utils/country.code"; // Import the utility function
+import { Link, useLocation } from 'react-router-dom';
+
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    const { isAuthenticated, user, logout } = useAuth();
+
+    useEffect(() => {
+        setOpen(false);
+    }, [location.pathname]);
+
+    const code = isAuthenticated && getCountryCode(user.shippingAddress.country);
+
     return (
         <>
             <div className="flex justify-between sticky top-0 left-0 z-50 lg:justify-around items-center h-20 bg-transparent backdrop-blur-md text-white px-4">
@@ -32,6 +47,81 @@ function Header() {
                         </li>
                     </ul>
                 </nav>
+                {
+                isAuthenticated ? (
+                    <div className="hidden lg:block">
+                        <button
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-6 focus:outline-none"
+                            >
+                            <p className="text-sm flex items-center gap-2">
+                                {code && (
+                                    <img
+                                        src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`}
+                                        alt={user.shippingAddress.country}
+                                        title={user.shippingAddress.country}
+                                        className="rounded-full w-8 h-7"
+                                    />
+                                )}
+                            </p>
+                            <img
+                                src={user.avatar || "/avatar.png"}
+                                alt="profile"
+                                className="w-8 h-8 rounded-full border offset ring-offset-3 ring-green-500 object-cover"
+                            />
+                        </button>
+
+                        {open && (
+                            <div className="absolute top-20 right-4 bg-gray-800 text-white rounded-md shadow-lg w-48">
+                                <div className="p-4 border-b border-gray-700">
+                                    <p className="font-semibold">{user.name}</p>
+                                    <p className="text-sm flex items-center gap-2">
+                                        {code && (
+                                            <img
+                                                src={`https://flagcdn.com/w20/${code.toLowerCase()}.png`}
+                                                alt={user.shippingAddress.country}
+                                                title={user.shippingAddress.country}
+                                                className="rounded-sm"
+                                            />
+                                        )}
+                                        {user.shippingAddress.country}
+                                    </p>
+                                </div>
+                                <ul className="py-2">
+                                    <li>
+                                        <a
+                                            href="/profile"
+                                            className="block px-4 py-2 hover:bg-gray-700"
+                                        >
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/orders"
+                                            className="block px-4 py-2 hover:bg-gray-700"
+                                        >
+                                            Orders
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={logout}
+                                            className="block px-4 py-2 hover:bg-gray-700"
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className="hidden lg:block">
+                        <Link to="/login" state={{ from: location.pathname }} className="bg-lime-500 p-2 px-5 rounded-md text-black font-semibold">Login</Link>
+                    </div>
+                )
+                }
             </div>
             {
                 isMenuOpen && (

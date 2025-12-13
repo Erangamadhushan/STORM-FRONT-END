@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Lock, Mail, Eye, EyeOff } from 'lucide-react';
 import { userAuth } from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Validation Schema
 const LoginSchema = Yup.object().shape({
@@ -19,6 +20,12 @@ const LoginSchema = Yup.object().shape({
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+  console.log(location.state);
+  console.log('Login page accessed from:', from);
 
   const initialValues = {
     email: '',
@@ -27,20 +34,33 @@ export default function Login() {
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log('Login submitted:', values);
+    //console.log('Login submitted:', values);
     
     try {
-      console.log(values.email, values.password);
+      //console.log(values.email, values.password);
 
       const response = await userAuth.login({
         email: values.email,
         password: values.password
       });
 
-      login(response.getUser, response.token);
+      login(response.data.getUser, response.data.token);
 
-      console.log('Login successful:', response);
+      console.log('Login successful:', response.data.getUser, response.data.token);
 
+      // console.log('Navigating to:', from);
+      // navigate(from, { replace: true });
+
+
+      if (from === "/buy-watches") {
+        navigate("/buy-watches", { replace: true });
+      }
+      else if (from.startsWith("/purchase-watch/")) {
+        navigate("/", { replace: true });
+      }
+      else {
+        navigate("/", { replace: true });
+      }
       // Handle successful login (e.g., redirect, store token, etc.)
 
     }
