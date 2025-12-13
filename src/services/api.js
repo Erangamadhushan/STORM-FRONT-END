@@ -45,3 +45,39 @@ export const placeOrder = async (orderData) => {
     throw error;
   }
 };
+
+export const userAuth = {
+  login: async (credentials) => {
+    try {
+      const response = await api.get('/auth/login', credentials);
+      return response.data;
+    } catch (error) {
+      console.error('Error during login:', error);
+      throw error;
+    }
+  },
+
+  register: async (userInfo) => {
+    try {
+      const response = await api.post('/auth/create-account', userInfo);
+      return response.data;
+    } catch (error) {
+      console.error('Error during registration:', error);
+      throw error;
+    }
+  },
+
+  verifyUser: async (token) => {
+    try {
+      const response = await api.get('/auth/verify', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error verifying user:', error);
+      throw error;
+    }
+  },
+}
