@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Lock, Mail, Eye, EyeOff } from 'lucide-react';
+import { userAuth } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 // Validation Schema
 const LoginSchema = Yup.object().shape({
@@ -16,6 +18,7 @@ const LoginSchema = Yup.object().shape({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
 
   const initialValues = {
     email: '',
@@ -23,16 +26,28 @@ export default function Login() {
     rememberMe: false
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     console.log('Login submitted:', values);
     
-    // Simulate API call
-    setTimeout(() => {
-      alert('Login successful! Redirecting to product page...');
-      setSubmitting(false);
-      // Add your login logic here
-      // Example: navigate('/dashboard');
-    }, 1000);
+    try {
+      console.log(values.email, values.password);
+
+      const response = await userAuth.login({
+        email: values.email,
+        password: values.password
+      });
+
+      login(response.getUser, response.token);
+
+      console.log('Login successful:', response);
+
+      // Handle successful login (e.g., redirect, store token, etc.)
+
+    }
+    catch (error) {
+      console.error(error);
+    }
+    
   };
 
   return (
