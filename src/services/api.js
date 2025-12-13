@@ -49,7 +49,7 @@ export const placeOrder = async (orderData) => {
 export const userAuth = {
   login: async (credentials) => {
     try {
-      const response = await api.get('/auth/login', credentials);
+      const response = await api.post('/auth/login', credentials);
       return response.data;
     } catch (error) {
       console.error('Error during login:', error);

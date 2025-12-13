@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {ShoppingCart, Check, Star, Shield, Truck, CreditCard, Info,} from "lucide-react";
+import {ShoppingCart, Check, Star, Shield, Truck, CreditCard, Info, ArrowLeft   } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchWatchByModelNumber } from "../services/api";
@@ -39,6 +39,11 @@ export const PurchaseWatch = () => {
     return (
         <div>
         <main className="bg-black text-white min-h-screen p-2">
+            {/* Back Button */}
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 hover:text-lime-400 transition mb-6">
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Products</span>
+            </button>
             <h1 className="text-2xl md:text-3xl  font-bold my-6 text-center">
             Purchase Watch
             </h1>
