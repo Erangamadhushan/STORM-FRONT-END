@@ -69,7 +69,7 @@ export const userAuth = {
 
   verifyUser: async (token) => {
     try {
-      const response = await api.get('/auth/verify', {
+      const response = await api.get('/auth/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

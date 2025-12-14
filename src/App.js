@@ -7,6 +7,7 @@ import { PurchaseWatch } from './pages/PurchaseWatch';
 import Login from './pages/UserAuthLogin';
 import Register from './pages/UserAuthRegister';
 import CheckOut from './pages/CheckOut';
+import UserProfile from './pages/UserProfile';
 
 // import context providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -42,11 +43,16 @@ function App() {
               <Route path="register" element={<Register />} />
               <Route path="purchase-watch/:modelNumber" element={<PurchaseWatch />} />
               
-                <Route path="check-out/:modelNumber" element={
-                  <ProtectedRoute>
-                    <CheckOut />
-                  </ProtectedRoute>
-                } />
+              <Route path="check-out/:modelNumber" element={
+                <ProtectedRoute>
+                  <CheckOut />
+                </ProtectedRoute>
+              } />
+              <Route path="user-profile/summary" element={
+                <UserProfile />
+              } />
+              
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>
         </OrderProvider>

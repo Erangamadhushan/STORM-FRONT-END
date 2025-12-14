@@ -90,7 +90,7 @@ function Header() {
                                 <ul className="py-2">
                                     <li>
                                         <a
-                                            href="/profile"
+                                            href="/user-profile/summary"
                                             className="block px-4 py-2 hover:bg-gray-700"
                                         >
                                             Profile
