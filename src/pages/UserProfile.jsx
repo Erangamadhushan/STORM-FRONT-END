@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { getCountryCode } from "../utils/country.code"; // Import the utility function
 import { useNavigate } from "react-router-dom";
 import { userAuth } from "../services/api";
+import { ArrowLeft } from "lucide-react";
 
 const UserProfile = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -17,23 +18,34 @@ const UserProfile = () => {
     navigate("/login");
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
+  const verifyUser = async () => {
+    try {
+        const token = localStorage.getItem("authToken");
 
-    console.log("UserProfile Token:", token);
-    if (!token) {
-        navigate("/login")
-    };
-    console.log("Verifying user with token:", token);
+        console.log("UserProfile Token:", token);
+        if (!token) {
+            navigate("/login")
+        };
+        console.log("Verifying user with token:", token);
 
-    const result = userAuth.verifyUser(token);
-    if (result) {
-        result.then((res) => {
-            console.log("Verified User Data:", res.data);
-            setVerifiedUser(res.data);
-        });
+        const result = userAuth.verifyUser(token);
+        if (result) {
+            result.then((res) => {
+                console.log("Verified User Data:", res.data);
+                setVerifiedUser(res.data);
+            });
+        }
+    } catch (error) {
+        console.warn("Token invalid or expired");
+        logout(); // clear token + redirect
     }
-  }, [verifiedUser, navigate]);
+  }
+
+  useEffect(() => {
+    verifyUser();
+  }, []);
+
+  
 
   const code = isAuthenticated && getCountryCode(user.shippingAddress.country);
   console.log("User Profile Code:", code);
@@ -42,6 +54,12 @@ const UserProfile = () => {
       {/* Page Container */}
       <div className="mx-auto max-w-6xl bg-black text-white border border-black p-6">
         {/* Header Section */}
+        <div className="mb-6">
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 hover:text-lime-400 transition mb-6">
+                <ArrowLeft className="w-5 h-5" />
+                <span>Back </span>
+            </button>
+        </div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-start border-b border-gray-300 pb-6">
           {/* User Info */}
           <div className="space-y-1">
