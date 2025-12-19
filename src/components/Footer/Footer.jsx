@@ -14,18 +14,18 @@ const Footer = () => {
             <div className="p-5 bg-gradient-to-b from-gray-900 to-black rounded-lg">
                 <h1 className="text-xl font-bold pl-20 mb-10 text-lime-500">Storm</h1>
                 <ul className="mt-2 space-y-3 pl-20">
-                    <li><a href="#our-company" className="hover:underline">Our Company</a></li>
-                    <li><a href="#our-story" className="hover:underline">Our Story</a></li>
-                    <li><a href="#careers" className="hover:underline">Careers</a></li>
-                    <li><a href="#site-map" className="hover:underline">Site Map</a></li>
+                    <li><a href="/about" className="hover:underline">Our Company</a></li>
+                    <li><a href="/about" className="hover:underline">Our Story</a></li>
+                    <li><a href="/careers" className="hover:underline">Careers</a></li>
+                    <li><a href="/site-map" className="hover:underline">Site Map</a></li>
                 </ul>
             </div>
             <div className="p-5">
                 <h1 className="text-xl font-bold pl-20 mb-10 text-gray-400">Support</h1>
                 <ul className="mt-2 space-y-3 pl-20">
-                    <li><a href="#contact-us" className="hover:underline">Contact Us</a></li>
-                    <li><a href="#faq" className="hover:underline">FAQ</a></li>
-                    <li><a href="#customer-care" className="hover:underline">Customer Care</a></li>
+                    <li><a href="/contact" className="hover:underline">Contact Us</a></li>
+                    <li><a href="/faq" className="hover:underline">FAQ</a></li>
+                    <li><a href="/customer-care" className="hover:underline">Customer Care</a></li>
                     <li><a href="#warranty" className="hover:underline">Warranty</a></li>
                     <li><a href="#shipping" className="hover:underline">Shipping</a></li>
                     <li><a href="#track-order" className="hover:underline">Track Order</a></li>
@@ -54,7 +54,7 @@ const Footer = () => {
                 <p>Privacy Policy</p>
             </div>
             <div className="text-center md:text-justify">
-                <p>Terms & Conditions</p>
+                <p><a href="/terms-and-conditions">Terms & Conditions</a></p>
             </div>
         </div>
     </div>
