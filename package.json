@@ -14,7 +14,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.10.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^0.0.0",
     "scrollreveal": "^4.0.9",
     "web-vitals": "^2.1.4",
     "yup": "^1.7.1"
@@ -23,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check-lock": "npm ci --dry-run"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.18",
+    "typescript": "^4.9.5"
   }
 }
