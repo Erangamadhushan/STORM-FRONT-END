@@ -8,6 +8,11 @@ import Login from './pages/UserAuthLogin';
 import Register from './pages/UserAuthRegister';
 import CheckOut from './pages/CheckOut';
 import UserProfile from './pages/UserProfile';
+import About from './pages/about/About';
+import FAQ from './pages/faq/FAQ';
+import CustomerCare from './pages/customercare/CustomerCare';
+import TermsAndConditions from './pages/terms/TermsAndConditions.jsx';
+import Contact from './pages/contact/Contact';
 
 // import context providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -51,7 +56,11 @@ function App() {
               <Route path="user-profile/summary" element={
                 <UserProfile />
               } />
-              
+              <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/customer-care" element={<CustomerCare />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/contact" element={<Contact />} />      
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>

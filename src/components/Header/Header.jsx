@@ -38,8 +38,8 @@ function Header() {
                         <li><a href="/" className="">Home</a></li>
                         <li><a href="/#brand-experience" className="">Brand Experience</a></li>
                         <li><a href="/#users-manual" className="">Users Manual</a></li>
-                        <li><a href="/#guarantee" className="">Guarantee</a></li>
-                        <li><a href="/#contact-us" className="">Contact Us</a></li>
+                        <li><a href="/terms-and-conditions" className="">Guarantee</a></li>
+                        <li><a href="/contact" className="">Contact Us</a></li>
                         <li>
                             <a href="/buy-watches" 
                             className=" bg-lime-500 p-2 rounded-md text-black font-semibold"
