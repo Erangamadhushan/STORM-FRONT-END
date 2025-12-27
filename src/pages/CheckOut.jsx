@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { paymentMethods } from '../data/payment-methods.data';
 import { CreditCard, Smartphone, Wallet, Lock, ArrowLeft, Check } from 'lucide-react';
 import { useOrder } from '../context/OrderContext';
+import axios from "axios";
+import { paymentApi } from '../services/api';
 
 
 export default function CheckOut() {
@@ -58,17 +60,17 @@ export default function CheckOut() {
     }
   };
 
-  const handlePayment = () => {
-    console.log('Processing payment:', {
-      method: selectedMethod,
-      cardNumber: cardNumber.replace(/\s/g, ''),
-      cardName,
-      expiry,
-      cvv,
-      saveCard,
-      amount: total
-    });
-    alert(`Payment of $${total.toFixed(2)} processed successfully!`);
+  const handlePayment = async () => {
+    const token = localStorage.getItem('authToken');
+    const paymentData = {
+      amount: Math.round((total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)) * 100), // amount in cents
+      currency: 'usd',
+      // You can add more payment details here if needed
+    };
+    const res =  await paymentApi(token, paymentData);
+    
+
+    window.location.href = res.data.url;
   };
 
 
@@ -138,7 +140,7 @@ export default function CheckOut() {
               </div>
 
               {/* Card Payment Form */}
-              {selectedMethod === 'card' && (
+              {/* {selectedMethod === 'card' && (
                 <div className="space-y-5">
                   <div>
                     <label className="block text-sm font-medium mb-2">Card Number</label>
@@ -201,7 +203,7 @@ export default function CheckOut() {
                     </label>
                   </div>
                 </div>
-              )}
+              )} */}
 
               {/* Mobile Payment */}
               {selectedMethod === 'mobile' && (
@@ -263,90 +265,92 @@ export default function CheckOut() {
           </div>
 
           {/* Right: Order Summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800 sticky top-8">
-              <h3 className="text-xl font-bold mb-6">Order Summary</h3>
+          {selectedMethod === 'card' && (
+            <div className="lg:col-span-1">
+              <div className="bg-gray-900 rounded-2xl p-6 border border-gray-800 sticky top-8">
+                <h3 className="text-xl font-bold mb-6">Order Summary</h3>
 
-              {/* Product Details */}
-              <div className="flex gap-4 mb-6 pb-6 border-b border-gray-800">
-                <div className="w-20 h-20 bg-gray-800 rounded-lg overflow-hidden">
-                  <img
-                    src={orderDetails.imageURL || 'https://via.placeholder.com/150'}
-                    alt="Storm Watch"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold mb-1">{orderDetails.watch.modelNumber}</h4>
-                  <p className="text-sm text-lime-400"> {orderDetails.watch.type}</p>
-                  <p className="text-sm text-gray-400">Qty: {orderDetails.quantity}</p>
-                </div>
-              </div>
-
-              {/* Price Breakdown */}
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Subtotal</span>
-                  <span className="font-semibold">${total}.00</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Shipping</span>
-                  <span className="font-semibold text-lime-400">FREE</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Tax</span>
-                  <span className="font-semibold">${orderSummary.tax}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-400">Discount <span className="text-lime-500">(2% OFF)</span></span>
-                  <span className="font-semibold text-lime-400">-${orderSummary.discount}</span>
-                </div>
-                <div className="border-t border-gray-800 pt-3">
-                  <div className="flex justify-between text-lg">
-                    <span className="font-bold">Total</span>
-                    <span className="font-bold text-lime-400">${(total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)).toFixed(2) }</span>
+                {/* Product Details */}
+                <div className="flex gap-4 mb-6 pb-6 border-b border-gray-800">
+                  <div className="w-20 h-20 bg-gray-800 rounded-lg overflow-hidden">
+                    <img
+                      src={orderDetails.imageURL || 'https://via.placeholder.com/150'}
+                      alt="Storm Watch"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold mb-1">{orderDetails.watch.modelNumber}</h4>
+                    <p className="text-sm text-lime-400"> {orderDetails.watch.type}</p>
+                    <p className="text-sm text-gray-400">Qty: {orderDetails.quantity}</p>
                   </div>
                 </div>
-              </div>
 
-              {/* Payment Button */}
-              <button
-                onClick={handlePayment}
-                className="w-full bg-lime-400 text-black font-bold py-4 rounded-lg hover:bg-lime-300 transition transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <Lock className="w-5 h-5" />
-                Pay ${(total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)).toFixed(2) }
-              </button>
-
-              {/* Trust Badges */}
-              <div className="mt-6 pt-6 border-t border-gray-800">
-                <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
-                  <div className="flex items-center gap-1">
-                    <Check className="w-4 h-4 text-lime-400" />
-                    <span>Secure</span>
+                {/* Price Breakdown */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Subtotal</span>
+                    <span className="font-semibold">${total}.00</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Check className="w-4 h-4 text-lime-400" />
-                    <span>Encrypted</span>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Shipping</span>
+                    <span className="font-semibold text-lime-400">FREE</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Check className="w-4 h-4 text-lime-400" />
-                    <span>Protected</span>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Tax</span>
+                    <span className="font-semibold">${orderSummary.tax}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-400">Discount <span className="text-lime-500">(2% OFF)</span></span>
+                    <span className="font-semibold text-lime-400">-${orderSummary.discount}</span>
+                  </div>
+                  <div className="border-t border-gray-800 pt-3">
+                    <div className="flex justify-between text-lg">
+                      <span className="font-bold">Total</span>
+                      <span className="font-bold text-lime-400" id="total-amount">${(total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)).toFixed(2) }</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Accepted Cards */}
-              <div className="mt-4 text-center">
-                <p className="text-xs text-gray-500 mb-2">We accept</p>
-                <div className="flex justify-center gap-2 opacity-50">
-                  <span className="text-2xl">💳</span>
-                  <span className="text-2xl">🍎</span>
-                  <span className="text-2xl">📱</span>
+                {/* Payment Button */}
+                <button
+                  onClick={handlePayment}
+                  className="w-full bg-lime-400 text-black font-bold py-4 rounded-lg hover:bg-lime-300 transition transform hover:scale-[101%] flex items-center justify-center gap-2"
+                >
+                  <Lock className="w-5 h-5" />
+                  Pay ${(total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)).toFixed(2) }
+                </button>
+
+                {/* Trust Badges */}
+                <div className="mt-6 pt-6 border-t border-gray-800">
+                  <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Check className="w-4 h-4 text-lime-400" />
+                      <span>Secure</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Check className="w-4 h-4 text-lime-400" />
+                      <span>Encrypted</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Check className="w-4 h-4 text-lime-400" />
+                      <span>Protected</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Accepted Cards */}
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-gray-500 mb-2">We accept</p>
+                  <div className="flex justify-center gap-2 opacity-50">
+                    <span className="text-2xl">💳</span>
+                    <span className="text-2xl">🍎</span>
+                    <span className="text-2xl">📱</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

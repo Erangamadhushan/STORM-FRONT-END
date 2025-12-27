@@ -81,3 +81,11 @@ export const userAuth = {
     }
   },
 }
+
+export const paymentApi = (token, paymentData) => {
+  return api.post('/payments/create-checkout-session', paymentData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
