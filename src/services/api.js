@@ -12,6 +12,21 @@ export const api = axios.create({
   },
 });
 
+// Handle token expiration
+// api.interceptors.response.use(
+//   response => response,
+//   error => {
+//     if (error.response && error.response.status === 401) {
+//       // Handle unauthorized access, e.g., redirect to login
+//       console.warn('Unauthorized! Redirecting to login...');
+//       // You can add your redirection logic here
+//     }
+//     return Promise.reject(error);
+//   }
+// );
+
+
+
 // function for watch data fetching
 export const fetchWatches = async () => {
   try {
@@ -82,10 +97,10 @@ export const userAuth = {
   },
 }
 
-export const paymentApi = (token, paymentData) => {
-  return api.post('/payments/create-checkout-session', paymentData, {
+export const paymentApi = (token, watch) => {
+  return api.post('/payments/create-checkout-session', watch, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      authorization: `Bearer ${token}`,
+  }
   });
 }
