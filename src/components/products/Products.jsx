@@ -1,5 +1,6 @@
 import React from 'react'
 import { products } from '../../data/product.data'
+import { Navigate } from 'react-router-dom'
 
 export const Products = () => {
   return (
@@ -34,8 +35,8 @@ export const Products = () => {
                                         </p>
                                     </div>
                                     <div className="text-center mb-5">
-                                        <button className="bg-lime-500 text-white px-5 py-2 rounded-full hover:bg-lime-600 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100">
-                                            Buy Now ${product.price}
+                                        <button className="bg-lime-500 text-white px-5 py-2 rounded-full hover:bg-lime-600 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100" onClick={() => window.location.href="/buy-watches"}>
+                                            Pre Order
                                         </button>
                                     </div>
                                 </div>

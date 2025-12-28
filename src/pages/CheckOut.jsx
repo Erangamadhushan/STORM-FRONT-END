@@ -62,12 +62,16 @@ export default function CheckOut() {
 
   const handlePayment = async () => {
     const token = localStorage.getItem('authToken');
-    const paymentData = {
-      amount: Math.round((total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)) * 100), // amount in cents
-      currency: 'usd',
+    localStorage.setItem('currentOrder', JSON.stringify(orderDetails));
+    const watch = {
+      image: orderDetails.imageURL,
+      name: orderDetails.watch.modelNumber,
+      quantity: orderDetails.quantity,
+      price: Math.round((total + parseFloat(orderSummary.tax) - parseFloat(orderSummary.discount)) * 100), // amount in cents
+      
       // You can add more payment details here if needed
     };
-    const res =  await paymentApi(token, paymentData);
+    const res =  await paymentApi(token, watch);
     
 
     window.location.href = res.data.url;

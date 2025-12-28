@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Lock, Mail, Eye, EyeOff, User, Phone, MapPin } from "lucide-react";
 import { userAuth } from "../services/api";
+import BackButton from '../components/ui/BackButton';
 
 // Validation Schema
 const RegisterSchema = Yup.object().shape({
@@ -91,6 +92,9 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       <div className="">
+        <div className="max-w-5xl mx-auto p-4">
+            <BackButton />
+        </div>
         {/* Main Content */}
         <div className="flex-1 flex items-center justify-center px-4 py-12">
           <div className="w-full max-w-5xl">
@@ -111,7 +115,7 @@ export default function Register() {
                   <div className="">
                     <Form className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-6 mt-[44px]">
                           <div>
                             <label
                               htmlFor="name"

@@ -1,8 +1,9 @@
-import React, { use, useState, useEffect } from 'react'; // Import React and useState hook
+import React, { useState, useEffect } from 'react'; // Import React and useState hook
 import { WatchIcon, TextAlignEnd } from 'lucide-react'; // Import icons from lucide-react
 import { useAuth } from '../../context/AuthContext'; // Import the useAuth hook
 import { getCountryCode } from "../../utils/country.code"; // Import the utility function
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'motion/react';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ function Header() {
 
     return (
         <>
-            <div className="flex justify-between sticky top-0 left-0 z-50 lg:justify-around items-center h-20 bg-transparent backdrop-blur-md text-white px-4">
+            <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="flex justify-between sticky top-0 left-0 z-50 lg:justify-around items-center h-20 bg-transparent backdrop-blur-md text-white px-4">
                 <div className="flex justify-end">
                     <h1 className="text-xl font-bold text-end">
                         <WatchIcon className="inline-block mr-2" size={20} />
@@ -122,7 +123,7 @@ function Header() {
                     </div>
                 )
                 }
-            </div>
+            </motion.div>
             {
                 isMenuOpen && (
                     <div className="lg:hidden fixed top-20 w-full z-50 bg-black text-white px-4 pt-5 pb-10">

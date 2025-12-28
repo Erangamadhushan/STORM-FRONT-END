@@ -5,6 +5,7 @@ import { Lock, Mail, Eye, EyeOff } from 'lucide-react';
 import { userAuth } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
+import BackButton from '../components/ui/BackButton';
 
 // Validation Schema
 const LoginSchema = Yup.object().shape({
@@ -72,7 +73,9 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-
+      <div className="max-w-5xl mx-auto p-4">
+          <BackButton />
+      </div>
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
