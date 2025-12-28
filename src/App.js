@@ -13,6 +13,8 @@ import FAQ from './pages/faq/FAQ';
 import CustomerCare from './pages/customercare/CustomerCare';
 import TermsAndConditions from './pages/terms/TermsAndConditions.jsx';
 import Contact from './pages/contact/Contact';
+import { Success } from './pages/Success';
+import { Failure } from './pages/Failure';
 
 // import context providers
 import { ThemeProvider } from './context/ThemeContext';
@@ -62,6 +64,8 @@ function App() {
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/contact" element={<Contact />} />      
               <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/payment-success" element={<Success />} />
+              <Route path="/payment-failure" element={<Failure />} />
             </Routes>
           </Router>
         </OrderProvider>

@@ -10,7 +10,6 @@ export default function TermsAndConditions() {
       />
 
       <div className="max-w-4xl mx-auto space-y-10 text-gray-300 text-sm leading-relaxed">
-        
         {/* Introduction */}
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">
@@ -18,8 +17,8 @@ export default function TermsAndConditions() {
           </h2>
           <p>
             Welcome to Storm Watch. By accessing or using our website, products,
-            or services, you agree to be bound by these Terms and Conditions.
-            If you do not agree, please do not use our services.
+            or services, you agree to be bound by these Terms and Conditions. If
+            you do not agree, please do not use our services.
           </p>
         </section>
 
@@ -70,9 +69,7 @@ export default function TermsAndConditions() {
 
         {/* Warranty */}
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">
-            6. Warranty
-          </h2>
+          <h2 className="text-xl font-semibold text-white mb-3">6. Warranty</h2>
           <p>
             Storm Watch products include a limited one-year warranty covering
             manufacturing defects. This warranty does not cover misuse or
@@ -134,9 +131,7 @@ export default function TermsAndConditions() {
           <p>
             If you have any questions regarding these Terms, please contact us:
           </p>
-          <p className="mt-2">
-            📧 support@stormwatch.com
-          </p>
+          <p className="mt-2">📧 support@stormwatch.com</p>
         </section>
 
         {/* Footer note */}
